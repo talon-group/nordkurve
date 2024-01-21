@@ -1,0 +1,67 @@
+name: Playwright Tests
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Check environment variables
+        # add your secrets to the repo settings
+        run: |
+          if [ -z "${{ secrets.POSTGRES_USER }}" ]; then echo "POSTGRES_USER is not set"; else echo "POSTGRES_USER is set"; fi
+          if [ -z "${{ secrets.POSTGRES_PASSWORD }}" ]; then echo "POSTGRES_PASSWORD is not set"; else echo "POSTGRES_PASSWORD is set"; fi
+          if [ -z "${{ secrets.POSTGRES_DB }}" ]; then echo "POSTGRES_DB is not set"; else echo "POSTGRES_DB is set"; fi
+          if [ -z "${{ secrets.NEXTAUTH_URL }}" ]; then echo "NEXTAUTH_URL is not set"; else echo "NEXTAUTH_URL is set"; fi
+          if [ -z "${{ secrets.NEXTAUTH_SECRET }}" ]; then echo "NEXTAUTH_SECRET is not set"; else echo "NEXTAUTH_SECRET is set"; fi
+          if [ -z "${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}" ]; then echo "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY is not set"; else echo "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY is set"; fi
+          if [ -z "${{ secrets.STRIPE_SECRET_KEY }}" ]; then echo "STRIPE_SECRET_KEY is not set"; else echo "STRIPE_SECRET_KEY is set"; fi
+          if [ -z "${{ secrets.EMAIL_SERVER }}" ]; then echo "EMAIL_SERVER is not set"; else echo "EMAIL_SERVER is set"; fi
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Generate Prisma Client
+        run: npx prisma generate
+      - name: Run Prisma Migrations
+        env:
+          DATABASE_URL: postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@localhost:${{ job.services.postgres.ports[5432] }}/${{ secrets.POSTGRES_DB }}
+        run: npx prisma migrate deploy
+      - name: Run Playwright tests
+        env:
+          CI: true
+          NEXTAUTH_URL: ${{secrets.NEXTAUTH_URL}}
+          NEXTAUTH_SECRET: ${{secrets.NEXTAUTH_SECRET}}
+          DATABASE_URL: postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@localhost:${{ job.services.postgres.ports[5432] }}/${{ secrets.POSTGRES_DB }}
+          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          EMAIL_SERVER: ${{ secrets.EMAIL_SERVER }}
+        run: npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
