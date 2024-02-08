@@ -26,7 +26,6 @@ async function getData(userId: string) {
           createdAt: "desc",
         },
       },
-
       Subscription: {
         select: {
           status: true,

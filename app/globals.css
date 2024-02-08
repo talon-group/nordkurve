@@ -2,6 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+.theme-bayer {
+  --background: #000000; /* Black */
+  --foreground: hsl(20, 14.3%, 4.1%); /* Dark gray */
+  --card: #cf2e2e; /* Red */
+  --card-foreground: hsl(20, 14.3%, 4.1%); /* Dark gray */
+  --popover: #cf2e2e; /* Red */
+  --popover-foreground: hsl(20, 14.3%, 4.1%); /* Dark gray */
+  --primary: hsl(0, 100%, 100%); /* White */
+  --primary-foreground: hsl(60, 9.1%, 97.8%); /* Light gray */
+  --secondary: hsl(0, 0%, 0%); /* Black */
+  --secondary-foreground: hsl(24, 9.8%, 10%); /* Black */
+  --muted: hsl(0, 0%, 0%); /* Black */
+  --muted-foreground: hsl(25, 5.3%, 44.7%); /* Medium gray */
+  --accent: hsl(0, 0%, 0%); /* Black */
+  --accent-foreground: hsl(24, 9.8%, 10%); /* Black */
+  --destructive: #cf2e2e; /* Red */
+  --destructive-foreground: hsl(60, 9.1%, 97.8%); /* Light gray */
+  --border: hsl(20, 5.9%, 90%); /* Light gray */
+  --input: hsl(20, 5.9%, 90%); /* Light gray */
+  --ring: #cf2e2e; /* Red */
+  --radius: 0.5rem;
+}
+
 .theme-zinc {
   --background: 0 0% 100%;
   --foreground: 240 10% 3.9%;
@@ -9,10 +32,10 @@
   --card-foreground: 240 10% 3.9%;
   --popover: 0 0% 100%;
   --popover-foreground: 240 10% 3.9%;
-  --primary: 240 5.9% 10%;
+  --primary: 0 64% 50%; /* 81%, 18%, 18% */
   --primary-foreground: 0 0% 98%;
-  --secondary: 240 4.8% 95.9%;
-  --secondary-foreground: 240 5.9% 10%;
+  --secondary: 0 0% 25%;
+  --secondary-foreground: 240 5.9% 40%;
   --muted: 240 4.8% 95.9%;
   --muted-foreground: 240 3.8% 46.1%;
   --accent: 240 4.8% 95.9%;
@@ -30,9 +53,9 @@
   --foreground: 0 0% 98%;
   --card: 240 10% 3.9%;
   --card-foreground: 0 0% 98%;
-  --popover: 240 10% 3.9%;
+  --popover: 0 64% 50%;
   --popover-foreground: 0 0% 98%;
-  --primary: 0 0% 98%;
+  --primary: 0 64% 50%;
   --primary-foreground: 240 5.9% 10%;
   --secondary: 240 3.7% 15.9%;
   --secondary-foreground: 0 0% 98%;
