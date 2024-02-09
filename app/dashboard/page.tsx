@@ -65,6 +65,8 @@ export default async function DashboardPage() {
           </p>
         </div>
 
+        <iframe src="https://keepuptodatetalon.vercel.app" height='60%' width='60%' />
+
         {data?.Subscription?.status === "active" ? (
           <Button asChild>
             <Link href="/dashboard/new">Create a new Note</Link>

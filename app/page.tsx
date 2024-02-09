@@ -31,86 +31,11 @@ export default function Home() {
   //   checkAuth();
   // }, [isAuthenticated]);
 
-  const [isSubscribed, setIsSubscribed] = useState(false);
-  const [subscription, setSubscription] = useState<any>(null);
-  const [registration, setRegistration] = useState<any>(null);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
-      // run only in browser
-      navigator.serviceWorker.ready.then(reg => {
-        if (reg && 'pushManager' in reg) {
-          reg.pushManager.getSubscription().then(sub => {
-            if (sub && !(sub.expirationTime && Date.now() > sub.expirationTime - 5 * 60 * 1000)) {
-              setSubscription(sub);
-              setIsSubscribed(true);
-            }
-          });
-          setRegistration(reg);
-        }
-      });
-    }
-  }, []);
-
-  const subscribeButtonOnClick = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    event.preventDefault();
-    if (!registration) return;
-    const sub = await registration.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: base64ToUint8Array('BOy88gPe6gMtsBKqHWpaELx5GJZxvomTKkjjJMdO_tkpAPb5EF_DsxW5MZiEOCT-Dz0pXu92eboKTbFvx-Cx-LI')
-    });
-    console.log(registration);
-    console.log('test');
-    setSubscription(sub);
-    setIsSubscribed(true);
-    console.log('web push subscribed!');
-    console.log(sub);
-  };
-
-  const unsubscribeButtonOnClick = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    event.preventDefault();
-    if (subscription) {
-      await subscription.unsubscribe();
-      setSubscription(null);
-      setIsSubscribed(false);
-      console.log('web push unsubscribed!');
-    }
-  };
-
-  const sendNotificationButtonOnClick = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    event.preventDefault();
-    if (!subscription) {
-      console.error('web push not subscribed');
-      return;
-    }
-
-    await fetch('/api/notification', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        subscription
-      })
-    });
-  };
-
   return (
     <section className="flex items-center justify-center bg-background h-[90vh]">
       <div className="relative items-center w-full px-5 py-12 mx-auto lg:px-16 max-w-7xl md:px-12">
         <div className="max-w-3xl mx-auto text-center">
           <div>
-          <div className='mb-5'><center>
-        <button onClick={subscribeButtonOnClick} disabled={isSubscribed}>
-          Subscribe
-        </button><br />
-        <button onClick={unsubscribeButtonOnClick} disabled={!isSubscribed}>
-          Unsubscribe
-        </button><br />
-        <button onClick={sendNotificationButtonOnClick} disabled={!isSubscribed}>
-          Send Notification
-        </button>
-        </center></div>
             {/* <span className="w-auto px-6 py-3 rounded-full bg-secondary">
               <span className="text-sm font-medium text-primary">
                 Sort your notes easily
