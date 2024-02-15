@@ -67,10 +67,10 @@ export default async function BillingPage() {
 
     const subscriptionUrl = await getStripeSession({
       customerId: dbUser.stripeCustomerId,
-      domainUrl:
-        process.env.NODE_ENV == "production"
-          ? (process.env.PRODUCTION_URL as string)
-          : "http://localhost:3000",
+      domainUrl: 'https://keepuptodatetalon.vercel.app',
+        // process.env.NODE_ENV == "production"
+        //   ? (process.env.PRODUCTION_URL as string)
+        //   : "https://keepuptodatetalon.vercel.app",
       priceId: process.env.STRIPE_PRICE_ID as string,
     });
 
@@ -81,10 +81,10 @@ export default async function BillingPage() {
     "use server";
     const session = await stripe.billingPortal.sessions.create({
       customer: data?.user.stripeCustomerId as string,
-      return_url:
-        process.env.NODE_ENV === "production"
-          ? (process.env.PRODUCTION_URL as string)
-          : "http://localhost:3000/dashboard",
+      return_url: 'https://keepuptodatetalon.vercel.app/dashboard'
+        // process.env.NODE_ENV === "production"
+        //   ? (process.env.PRODUCTION_URL as string)
+        //   : "https://keepuptodatetalon.vercel.app/dashboard",
     });
 
     return redirect(session.url);

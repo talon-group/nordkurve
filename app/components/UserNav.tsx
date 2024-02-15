@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { CreditCard, DoorClosed, Home, Settings } from "lucide-react";
+import { BellElectric, BookmarkIcon, CreditCard, DoorClosed, Home, Settings } from "lucide-react";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 
 import Link from "next/link";
@@ -18,6 +18,8 @@ export const navItems = [
   { name: "Home", href: "/dashboard", icon: Home },
   { name: "Settings", href: "/dashboard/settings", icon: Settings },
   { name: "Billing", href: "/dashboard/billing", icon: CreditCard },
+  // { name: "Reminders", href: "https://keepuptodatetalon-dfctrons6-gizmotronn.vercel.app/", icon: BellElectric },
+  { name: "Bookmarks", href: "/dashboard/bookmarks", icon: BookmarkIcon },
 ];
 
 export function UserNav({
@@ -35,7 +37,7 @@ export function UserNav({
         <Button variant="ghost" className="relative h-10 w-10 rounded-full">
           <Avatar className="h-10 w-10 rounded-full">
             <AvatarImage src={image} alt="" />
-            <AvatarFallback>Jan</AvatarFallback>
+            <AvatarFallback>User</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>

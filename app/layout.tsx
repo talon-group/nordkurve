@@ -8,12 +8,13 @@ import { Navbar } from "./components/Navbar";
 import prisma from "./lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { unstable_noStore as noStore } from "next/cache";
+import BookmarksProvider from "./components/Context/BookmarkContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   manifest: "/manifest.json",
-  title: "NK12",    
+  title: "Keepup",    
 };
 
 async function getData(userId: string) {
@@ -40,8 +41,8 @@ export default async function RootLayout({
   const user = await getUser();
   const data = await getData(user?.id as string);
 
-  const APP_NAME = 'Nordkurve 12';
-  const APP_DESCRIPTION = 'The ultras of Leverkusen';
+  const APP_NAME = 'Keepup';
+  const APP_DESCRIPTION = 'Keep up to date';
 
   return (
     <html lang="en">
@@ -72,6 +73,7 @@ export default async function RootLayout({
             }
             `}</style>
         </Head> */}
+        <BookmarksProvider>
       <body
         className={`${inter.className} ${data?.colorScheme ?? "theme-zinc"}`}
       >
@@ -85,6 +87,7 @@ export default async function RootLayout({
           {children}
         </ThemeProvider>
       </body>
+      </BookmarksProvider>
     </html>
   );
 }

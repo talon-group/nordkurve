@@ -26,6 +26,7 @@ async function getData(userId: string) {
           createdAt: "desc",
         },
       },
+
       Subscription: {
         select: {
           status: true,
@@ -64,8 +65,6 @@ export default async function DashboardPage() {
             Here you can see and create new notes
           </p>
         </div>
-
-        <iframe src="https://keepuptodatetalon.vercel.app" height='60%' width='60%' />
 
         {data?.Subscription?.status === "active" ? (
           <Button asChild>
@@ -137,4 +136,4 @@ export default async function DashboardPage() {
       )}
     </div>
   );
-}
+};
