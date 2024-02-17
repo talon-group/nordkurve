@@ -1,6 +1,6 @@
-import { createOrUpdateUser } from "@/repositories/user-repository";
-import { createOrUpdateRole } from "@/repositories/role-repository";
-import { ADMIN_ROLE_ID } from "@/consts/roles-consts";
+import { createOrUpdateUser } from "@/src/repositories/user-repository";
+import { createOrUpdateRole } from "@/src/repositories/role-repository";
+import { ADMIN_ROLE_ID } from "@/src/consts/roles-consts";
 
 const adminEmail = process.env.ADMIN_EMAIL;
 

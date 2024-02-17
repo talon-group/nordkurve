@@ -4,7 +4,7 @@ import { ChangeEvent, useEffect } from "react";
 import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
 
-import { ADMIN_ROLE_NAME, USER_ROLE_NAME } from "@/consts/roles-consts";
+import { ADMIN_ROLE_NAME, USER_ROLE_NAME } from "@/src/consts/roles-consts";
 import { updateUserRoleAction } from "../actions";
 
 interface SelectRoleProps {

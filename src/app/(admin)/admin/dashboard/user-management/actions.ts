@@ -1,11 +1,7 @@
 "use server";
 
-import {
-  toggleUserAccessByEmail,
-  getManyUsers,
-  updateUserRoleByEmail,
-} from "@/repositories/user-repository";
-import { UserRole } from "@/consts/roles-consts";
+import { toggleUserAccessByEmail, getManyUsers, updateUserRoleByEmail } from "@/src/repositories/user-repository";
+import { UserRole } from "@/src/consts/roles-consts";
 
 export const getUsersAction = async () => {
   const users = await getManyUsers();

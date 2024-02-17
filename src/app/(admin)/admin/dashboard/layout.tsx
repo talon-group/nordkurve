@@ -1,8 +1,8 @@
 import React from "react";
 import { redirect } from "next/navigation";
 
-import { authConfig } from "@/config/auth-config";
-import { getIsAdmin } from "@/libs/auth/auth-utils";
+import { authConfig } from "@/src/config/auth-config";
+import { getIsAdmin } from "@/src/libs/auth/auth-utils";
 
 export default async function AdminDashboardLayout({
   children,
