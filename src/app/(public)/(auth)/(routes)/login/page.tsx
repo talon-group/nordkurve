@@ -4,9 +4,9 @@ import React from "react";
 import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 
-import { authConfig } from "@/config/auth-config";
-import { Providers } from "@/components/providers";
-import { getHumanErrorMessage } from "@/libs/auth/auth-errors-utils";
+import { authConfig } from "@/src/config/auth-config";
+import { Providers } from "@/src/components/providers";
+import { getHumanErrorMessage } from "@/src/libs/auth/auth-errors-utils";
 
 export default function LoginPage() {
   const searchParams = useSearchParams();

@@ -1,7 +1,16 @@
 import { getUsersAction } from "../actions";
-
 import { SelectRole } from "./select-role";
+interface User {
+  isActive: boolean;
+  email: string;
+  name: string;
+  role: {
+    name: string;
+  };
+  createdAt: Date;
+}
 
+// Define the table headers
 const tableHeaders = [
   "Status",
   "Email",
@@ -10,13 +19,17 @@ const tableHeaders = [
   "Created at (YYYY-MM-DD)",
 ];
 
+// Export the UsersTable component
 export const UsersTable = async () => {
-  const users = await getUsersAction();
+  // Fetch users using the getUsersAction
+  const users: User[] = await getUsersAction();
 
-  if (!users || !users.length) {
+  // Return a message if no users are found
+  if (!users || users.length === 0) {
     return <p>No users found</p>;
   }
 
+  // Render the table
   return (
     <div className="overflow-x-auto">
       <table aria-label="users list" className="table table-md">
@@ -28,22 +41,18 @@ export const UsersTable = async () => {
           </tr>
         </thead>
         <tbody>
-          {users?.map((user) => (
-            <tr
-              key={user.email}
-              className="hover"
-              aria-label={user.email as string}
-            >
+          {/* Map through the users array and render each user */}
+          {users.map((user: User) => (
+            <tr key={user.email} className="hover" aria-label={user.email}>
               <td>{user.isActive ? "Active" : "Inactive"}</td>
               <td>{user.email}</td>
               <td>{user.name}</td>
               <td aria-label={user.role.name}>
-                <SelectRole
-                  userRoleName={user.role.name}
-                  email={user.email as string}
-                />
+                {/* Render the SelectRole component */}
+                <SelectRole userRoleName={user.role.name} email={user.email} />
               </td>
               <td>
+                {/* Format the date */}
                 {user.createdAt.toLocaleString("eu", {
                   day: "2-digit",
                   month: "2-digit",

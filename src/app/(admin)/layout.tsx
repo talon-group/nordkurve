@@ -1,4 +1,4 @@
-import { PrivateNavbar } from "@/components/navbar/private-navbar";
+import { PrivateNavbar } from "@/src/components/navbar/private-navbar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
