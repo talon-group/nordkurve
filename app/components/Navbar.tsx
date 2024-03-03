@@ -7,6 +7,7 @@ import {
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { UserNav } from "./UserNav";
+import Image from "next/image";
 
 export async function Navbar() {
   const { isAuthenticated, getUser } = getKindeServerSession();
@@ -17,7 +18,7 @@ export async function Navbar() {
       <div className="container flex items-center justify-between">
         <Link href="/">
           <h1 className="font-bold text-3xl">
-            Marshal<span className="text-primary">Saas</span>
+            <Image src="/Home.png" alt="Home Icon" width={100} height={100} />
           </h1>
         </Link>
 
