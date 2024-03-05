@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./components/theme-provider";
-import { Navbar } from "./components/Navbar";
+import { Navbar, NavbarTest } from "./components/Navbar";
 import prisma from "./lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { unstable_noStore as noStore } from "next/cache";
@@ -83,11 +83,11 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
+          <NavbarTest />
           {children}
         </ThemeProvider>
       </body>
       </BookmarksProvider>
     </html>
   );
-}
+};
