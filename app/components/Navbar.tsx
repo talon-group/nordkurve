@@ -71,7 +71,7 @@ export const NavbarTest = () => {
         rightMenu={
           <>
             <li>
-              <Link href="/sign-in">Sign in</Link>
+              <LoginLink>Log in</LoginLink>
             </li>
             <li>
               <Link className={buttonVariants()} href="/sign-up">

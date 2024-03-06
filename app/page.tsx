@@ -9,6 +9,7 @@ import announcements, { Announcement } from './components/Content/Announcements'
 import { getBookmarkedAnnouncements } from './lib/bookmarks';
 import { Section } from './components/Section/Section';
 import { CenteredHero, NeumorphicButton } from './components/Section/Hero';
+import BlogSection from './components/Section/Content/Blog';
 
 export default function Home() {
   // const { isAuthenticated } = getKindeServerSession();
@@ -51,6 +52,9 @@ export default function Home() {
   };
 
   return (
-    <CenteredHero {...heroProps} />
+    <>
+      <Section><CenteredHero {...heroProps} /></Section>
+      <Section><BlogSection /></Section>
+    </>
   );
 }
