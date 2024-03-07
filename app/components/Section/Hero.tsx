@@ -24,15 +24,6 @@ interface CenteredHeroProps {
 
 const CenteredHero: React.FC<CenteredHeroProps> = ({ banner, title, description, buttons }) => {
   return (
-    <Section>
-{/* <style jsx global>{`
-        body {
-          background-image: url('https://pbs.twimg.com/media/GLJ5pruWsAAa2m9?format=jpg&name=4096x4096');
-          background-size: cover;
-          background-position: center;
-          opacity: 0.9
-        }
-              `}</style> */}
     <div
       className="hero-section text-white min-h-screen flex flex-col items-center justify-center" // bg-gradient-to-r from-gray-900 to-red-700 
     >
@@ -59,7 +50,6 @@ const CenteredHero: React.FC<CenteredHeroProps> = ({ banner, title, description,
         {buttons}
       </div>
     </div>
-    </Section>
   );
 };
 

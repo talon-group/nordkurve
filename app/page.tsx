@@ -51,10 +51,20 @@ export default function Home() {
     ),
   };
 
-  return (
-    <>
-      <Section><CenteredHero {...heroProps} /></Section>
-      <Section><BlogSection /></Section>
+  const buttons = [
+    <NeumorphicButton key="get-started" text="Get Started" onClick={() => console.log('Get Started')} />,
+    <NeumorphicButton key="learn-more" text="Learn More" onClick={() => console.log('Learn More')} />
+  ];
+  
+    return (
+      <>
+        <Section>
+          <div className="mt-3 text-center text-5xl font-bold tracking-tight text-red-500">Nordkurve 12 e.V.</div>
+          <div className="mt-8 flex flex-row justify-center gap-x-5">
+            {buttons}
+          </div>
+          <BlogSection />
+        </Section>
     </>
   );
 }
