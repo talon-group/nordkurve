@@ -10,6 +10,7 @@ import { getBookmarkedAnnouncements } from './lib/bookmarks';
 import { Section } from './components/Section/Section';
 import { CenteredHero, NeumorphicButton } from './components/Section/Hero';
 import BlogSection from './components/Section/Content/Blog';
+import AllProductsGrid from './components/Commerce/ProductGrid';
 
 export default function Home() {
   // const { isAuthenticated } = getKindeServerSession();
@@ -64,6 +65,8 @@ export default function Home() {
             {buttons}
           </div>
           <BlogSection />
+          <div className="mt-3 text-center text-5xl font-bold tracking-tight text-red-500">Fan shop.</div>
+          <AllProductsGrid />
         </Section>
     </>
   );
