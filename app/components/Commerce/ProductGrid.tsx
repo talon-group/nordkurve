@@ -3,35 +3,31 @@ import React from "react";
 const products = [
     {
       id: 1,
-      name: 'Earthen Bottle',
+      name: 'Home Kit 23/24',
       href: '#',
-      price: '$48',
+      price: '$69',
       imageSrc: 'https://b04-ep-media-prod.azureedge.net/pickerimages-shop/2002164_Heimtrikot-Castore-2324_Front_23-06_528911_M.jpg',
-      imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
     },
     {
       id: 2,
-      name: 'Nomad Tumbler',
+      name: 'GK Kit 23/24',
       href: '#',
-      price: '$35',
-      imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg',
-      imageAlt: 'Olive drab green insulated bottle with flared screw lid and flat top.',
+      price: '$69',
+      imageSrc: 'https://b04-ep-media-prod.azureedge.net/pickerimages-shop/2002167-NEU_TW_Castore_2324_Front_529923_M.jpg',
     },
     {
       id: 3,
-      name: 'Focus Paper Refill',
+      name: 'Away Kit 23/24',
       href: '#',
-      price: '$89',
-      imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg',
-      imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
+      price: '$69',
+      imageSrc: 'https://b04-ep-media-prod.azureedge.net/pickerimages-shop/2002165_Auswaertstrikot-Castore-2324_Front_23-07_531349_M.jpg',
     },
     {
       id: 4,
-      name: 'Machined Mechanical Pencil',
+      name: 'GK Away Kit 23/24',
       href: '#',
-      price: '$35',
-      imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg',
-      imageAlt: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
+      price: '$69',
+      imageSrc: 'https://b04-ep-media-prod.azureedge.net/pickerimages-shop/2002168_Auswaertstrikot-Torwart-Castore-2324_unbeflockt_Front_23-04_535275_M.jpg',
     },
 ]
 
@@ -47,7 +43,6 @@ export default function AllProductsGrid() {
                   <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                     <img
                       src={product.imageSrc}
-                      alt={product.imageAlt}
                       className="h-full w-full object-cover object-center group-hover:opacity-75"
                     />
                   </div>
