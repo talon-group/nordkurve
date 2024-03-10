@@ -1,12 +1,6 @@
 "use client"
 
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { RegisterLink } from '@kinde-oss/kinde-auth-nextjs/components';
-import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
-import { redirect } from 'next/navigation';
-import announcements, { Announcement } from './components/Content/Announcements';
-import { getBookmarkedAnnouncements } from './lib/bookmarks';
 import { Section } from './components/Section/Section';
 import { CenteredHero, NeumorphicButton } from './components/Section/Hero';
 import BlogSection from './components/Section/Content/Blog';
@@ -23,19 +17,6 @@ export default function Home() {
   //   };
   //   checkAuth();
   // }, [isAuthenticated]);
-
-  const handleAddToFeed = (url: string) => {
-    console.log("Adding URL to feed:", url);
-  };
-
-  // Get the bookmarked announcements
-  const [bookmarkedAnnouncements, setBookmarkedAnnouncements] = useState<Announcement[]>([]);
-
-  useEffect(() => {
-    // Fetch bookmarked announcements
-    const bookmarks = getBookmarkedAnnouncements();
-    setBookmarkedAnnouncements(bookmarks);
-  }, []);
 
   const heroProps = {
     banner: {
