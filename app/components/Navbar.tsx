@@ -86,7 +86,7 @@ export const NavbarTest = () => {
         </li>
 
         <li>
-          <Link href="/">(fanshop)</Link>
+          <Link href="/store">(fanshop)</Link>
         </li>
 
         <li>
