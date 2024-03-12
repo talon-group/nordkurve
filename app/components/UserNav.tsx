@@ -58,7 +58,7 @@ export function UserNav({
               >
                 {item.name}
                 <span>
-                  <item.icon className="w-4 h-4" />
+                  <item.icon className="w-4 h-4" style={{ color: "#cf2e2e" }} />
                 </span>
               </Link>
             </DropdownMenuItem>
