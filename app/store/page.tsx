@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect } from "react"
 import { revalidatePath, unstable_noStore as noStore } from "next/cache";
-import prisma from "../../lib/db";
+import prisma from "../lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { Section } from "../../components/Section/Section";
-import AllProductsGrid from "../../components/Commerce/ProductGrid";
+import { Section } from "../components/Section/Section";
+import AllProductsGrid from "../components/Commerce/ProductGrid";
 
 async function getData(userId: string) {
     noStore();
