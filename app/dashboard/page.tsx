@@ -104,7 +104,7 @@ export default async function DashboardPage() {
         </div>
       ) : (
         <div className="flex flex-col gap-y-4">
-          {data?.Notes.map((item) => (
+          {data?.Notes.map((item: any) => (
             <Card
               key={item.id}
               className="flex items-center justify-between p-4"

@@ -1,7 +1,8 @@
 "use client"
 
 import React, { useEffect, useState } from "react";
-import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { createClient } from "@/app/lib/supabase/client";
+// import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 
 const products = [
     {
@@ -32,11 +33,21 @@ const products = [
       price: '$69',
       imageSrc: 'https://b04-ep-media-prod.azureedge.net/pickerimages-shop/2002168_Auswaertstrikot-Torwart-Castore-2324_unbeflockt_Front_23-04_535275_M.jpg',
     },
-]
+];
+
+type Product = {
+  id: number;
+  name: string;
+  itemDescription: string | null;
+  imageUrl: string | null;
+  price: number;
+  quantity: number | null;
+  created_at: string;
+};
 
 export default function AllProductsGrid() {
-  const supabase = useSupabaseClient();
-  const [storeItems, setStoreItems] = useState([]);
+  const supabase = createClient();
+  const [storeItems, setStoreItems] = useState<Product[]>([]);
 
   const fetchShopItems = async () => {
     try {
@@ -45,8 +56,8 @@ export default function AllProductsGrid() {
         .select("*")
 
       if (data) {
+        console.log(data);
         setStoreItems(data);
-        console.log(storeItems);
       };
 
       if (error) {
@@ -73,6 +84,20 @@ export default function AllProductsGrid() {
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                   <img
                     src={product.imageSrc}
+                    className="h-full w-full object-cover object-center group-hover:opacity-75"
+                  />
+                </div>
+                <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
+                <p className="mt-1 text-lg font-medium text-gray-900">{product.price}</p>
+              </a>
+            ))}
+          </div>
+          <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+            {storeItems.map((product) => (
+              <a key={product.id} href={product.name} className="group">
+                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                  <img
+                    src={product.imageUrl || ''}
                     className="h-full w-full object-cover object-center group-hover:opacity-75"
                   />
                 </div>
