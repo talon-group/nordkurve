@@ -32,7 +32,7 @@ async function getData({ userId, noteId }: { userId: string; noteId: string }) {
   });
 
   return data;
-}
+};
 
 export default async function DynamicRoute({
   params,
