@@ -1,11 +1,10 @@
 import React from 'react';
 import { Section } from './Section';
 
-export const NeumorphicButton: React.FC<{ text: string; onClick: () => void }> = ({ text, onClick }) => {
+export const NeumorphicButton: React.FC<{ text: string; }> = ({ text }) => {
     return (
       <button
         className="bg-gray-800 text-white text-xl font-bold py-4 px-6 rounded-lg shadow-inner shadow-gray-900 hover:bg-red-600 transition-colors duration-300"
-        onClick={onClick}
       >
         {text}
       </button>

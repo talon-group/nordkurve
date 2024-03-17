@@ -54,7 +54,6 @@ export default function DynamicShopItemRoute({
                     .select("*")
                     .eq("id", itemId)
                     .single();
-
                 if (error) {
                     console.error("Error fetching item data:", error);
                     return;

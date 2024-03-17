@@ -5,6 +5,7 @@ import { Section } from './components/Section/Section';
 import { CenteredHero, NeumorphicButton } from './components/Section/Hero';
 import BlogSection from './components/Section/Content/Blog';
 import AllProductsGrid from './components/Commerce/ProductGrid';
+import Link from 'next/link';
 
 export default function Home() {
   // const { isAuthenticated } = getKindeServerSession();
@@ -25,17 +26,11 @@ export default function Home() {
     },
     title: <h1>Welcome to Our Website!</h1>,
     description: 'Discover our products and services.',
-    buttons: (
-      <>
-        <NeumorphicButton text="Get Started" onClick={() => console.log('Get Started')} />
-        <NeumorphicButton text="Learn More" onClick={() => console.log('Learn More')} />
-      </>
-    ),
   };
 
   const buttons = [
-    <NeumorphicButton key="get-started" text="Get Started" onClick={() => console.log('Get Started')} />,
-    <NeumorphicButton key="learn-more" text="Learn More" onClick={() => console.log('Learn More')} />
+    <Link href='/'><NeumorphicButton key="get-started" text="Get Started" /></Link>,
+    <Link href='/about'><NeumorphicButton key="learn-more" text="Learn More" /></Link>
   ];
   
     return (
