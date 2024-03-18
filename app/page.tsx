@@ -41,7 +41,6 @@ export default function Home() {
             {buttons}
           </div>
           <BlogSection />
-          <div className="mt-3 text-center text-5xl font-bold tracking-tight text-red-500">Fan shop.</div>
           <AllProductsGrid />
         </Section>
     </>
