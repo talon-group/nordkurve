@@ -9,19 +9,19 @@ import { useRouter } from "next/router";
 
 async function getData({ userId, noteId }: { userId: string; noteId: string }) {
     noStore();
-    const data = await prisma.note.findUnique({
-      where: {
-        id: noteId,
-        userId: userId,
-      },
-      select: {
-        title: true,
-        description: true,
-        id: true,
-      },
-    });
+    // const data = await prisma.note.findUnique({
+    //   where: {
+    //     id: noteId,
+    //     userId: userId,
+    //   },
+    //   select: {
+    //     title: true,
+    //     description: true,
+    //     id: true,
+    //   },
+    // });
   
-    return data;
+    // return data;
 };
 
 type Product = {
