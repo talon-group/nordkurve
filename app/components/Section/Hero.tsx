@@ -9,7 +9,7 @@ export const NeumorphicButton: React.FC<{ text: string; }> = ({ text }) => {
         {text}
       </button>
     );
-  };
+};
 
 interface CenteredHeroProps {
   banner: {
