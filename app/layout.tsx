@@ -9,6 +9,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { unstable_noStore as noStore } from "next/cache";
 import { useEffect } from "react";
 import { useSession } from "@supabase/auth-helpers-react";
+import { UserProvider } from "@/context/UserContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -79,8 +80,10 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NavbarTest />
-          {children}
+          <UserProvider>
+            <NavbarTest />
+            {children}
+          </UserProvider>
         </ThemeProvider>
       </body>
     </html>
