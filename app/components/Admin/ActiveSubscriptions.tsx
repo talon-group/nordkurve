@@ -28,7 +28,7 @@ export default function UserSubscriptionList() {
   useEffect(() => {
     const fetchUserSubscriptions = async () => {
       const { data, error } = await supabase
-        .from<User>('User')
+        .from('User')
         .select(`
           id,
           name,
