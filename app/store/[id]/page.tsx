@@ -1,8 +1,28 @@
-"use client";
+"use client"
 
 import React, { useEffect, useState } from "react";
 import { createClient } from "@/app/lib/supabase/client";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { revalidatePath, unstable_noStore as noStore } from "next/cache";
 import { Section } from "@/app/components/Section/Section";
+import { useRouter } from "next/router";
+
+async function getData({ userId, noteId }: { userId: string; noteId: string }) {
+    noStore();
+    // const data = await prisma.note.findUnique({
+    //   where: {
+    //     id: noteId,
+    //     userId: userId,
+    //   },
+    //   select: {
+    //     title: true,
+    //     description: true,
+    //     id: true,
+    //   },
+    // });
+  
+    // return data;
+};
 
 type Product = {
     id: number;
@@ -14,8 +34,16 @@ type Product = {
     created_at: string;
 };
 
-export default function DynamicShopItemRoute({ params }: { params: { id: string } }) {
+export default function DynamicShopItemRoute({
+    params,
+}: {
+    params: { id: string };
+}) {
+    const router = useRouter();
     const supabase = createClient();
+    const { id: itemId } = router.query;
+    const { getUser } = getKindeServerSession();
+
     const [itemData, setItemData] = useState<Product | undefined>(undefined);
 
     useEffect(() => {
@@ -24,7 +52,7 @@ export default function DynamicShopItemRoute({ params }: { params: { id: string 
                 const { data, error } = await supabase
                     .from("storeItems")
                     .select("*")
-                    .eq("id", params.id)
+                    .eq("id", itemId)
                     .single();
                 if (error) {
                     console.error("Error fetching item data:", error);
@@ -37,10 +65,10 @@ export default function DynamicShopItemRoute({ params }: { params: { id: string 
             }
         };
 
-        if (params.id) {
+        if (itemId) {
             fetchItemData();
         }
-    }, [supabase, params.id]);
+    }, [supabase, itemId]);
 
     return (
         <>
