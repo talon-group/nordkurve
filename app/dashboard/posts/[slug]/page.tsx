@@ -20,7 +20,7 @@ const ArticlePage = () => {
     console.log(slug);
 
     const { data: articleData, error: artilceError } = await supabase
-      .from("article")
+      .from("posts")
       .select()
       .eq("slug", slug);
 

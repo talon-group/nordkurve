@@ -53,7 +53,7 @@ const ArticleSettings = ({ body }: ArticleSettingProps) => {
       slug: getSlug(values.title),
     };
 
-    const { error } = await supabase.from("article").insert(articleData);
+    const { error } = await supabase.from("posts").insert(articleData);
     if (error) {
       toast.error("Article not added!");
       console.log(error);
@@ -154,7 +154,7 @@ const ArticleSettings = ({ body }: ArticleSettingProps) => {
                             return;
                           }
                           const path = data.path.replace(/ /g, "%20");
-                          const SUPABASE_REFERENCE = "Your supabase reference";
+                          const SUPABASE_REFERENCE = "euxlzwytljyuljtikgac";
                           const URL = `https://${SUPABASE_REFERENCE}.supabase.co/storage/v1/object/public/thumbnail/${path}`;
                           setImgURL(URL);
                           setFieldValue("thumbnail", URL);

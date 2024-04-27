@@ -53,7 +53,7 @@ const ArticleList = () => {
 
   const getArticleData = async () => {
     try {
-      const { data, error } = await supabase.from("article").select();
+      const { data, error } = await supabase.from("posts").select();
       if (error) throw error;
       setArticleData(data);
     } catch (error: any) {
