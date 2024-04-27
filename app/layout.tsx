@@ -1,7 +1,10 @@
 // "use client"
 
+import { ChakraProvider } from "@chakra-ui/react";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ToastContainer } from "react-toastify";
+  import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 import { ThemeProvider } from "./components/theme-provider";
 import { Navbar, NavbarTest } from "./components/Navbar";
@@ -81,8 +84,11 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NavbarTest />
-          {children}
+          <ChakraProvider>
+            <NavbarTest />
+            <ToastContainer />
+            {children}
+          </ChakraProvider>
         </ThemeProvider>
       </body>
     </html>
