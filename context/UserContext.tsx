@@ -1,4 +1,4 @@
-// contexts/UserContext.tsx
+"use client";
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useUser, useSessionContext } from '@supabase/auth-helpers-react';
