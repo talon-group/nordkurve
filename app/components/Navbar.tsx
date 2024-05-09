@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import {
   RegisterLink,
   LoginLink,
+  LogoutLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { UserNav } from "./UserNav";
@@ -11,6 +12,7 @@ import Image from "next/image";
 import { buttonVariants } from '@/components/ui/button';
 import { CenteredMenu } from "./Section/CenteredMenu";
 import { Section } from "./Section/Section";
+import { DoorClosed } from "lucide-react";
 
 export async function Navbar() {
   const { isAuthenticated, getUser } = getKindeServerSession();
@@ -30,14 +32,14 @@ export async function Navbar() {
 
           {(await isAuthenticated()) ? (
             <UserNav
-              email={user?.email as string}
+              email={user?.email as string} 
               image={user?.picture as string}
               name={user?.given_name as string}
             />
           ) : (
             <div className="flex items-center gap-x-5">
               <LoginLink>
-                <Button>Sign In</Button>
+                <Button>Sign in</Button>
               </LoginLink>
 
               <RegisterLink>
@@ -62,45 +64,53 @@ const Logo = () => (
 
 export { Logo };
 
-export const NavbarTest = () => {
+const NavbarTest = async () => {
+  const { isAuthenticated } = getKindeServerSession();
 
   return (
     <Section className="px-3 py-6">
       <CenteredMenu
         logo={<Logo />}
         rightMenu={
-          <>
-            <li>
-              <LoginLink>Log in</LoginLink>
-            </li>
-            <li>
-              <Link className={buttonVariants()} href="/sign-up">
-                Sign up
-              </Link>
-            </li>
-          </>
+          await isAuthenticated() ? (
+            <LogoutLink>
+              Logout{" "}
+              <span>
+                <DoorClosed className="w-4 h-4" />
+              </span>
+            </LogoutLink>
+          ) : (
+            <>
+              <li>
+                <LoginLink>Log in</LoginLink>
+              </li>
+              <li>
+                <Link legacyBehavior href="/sign-up">
+                  <a className={buttonVariants()}>Sign up</a>
+                </Link>
+              </li>
+            </>
+          )
         }
       >
         <li>
-          <Link href="/">(ticketing)</Link>
+          <Link href="/">Ticketing</Link>
         </li>
-
         <li>
-          <Link href="/store">(fanshop)</Link>
+          <Link href="/store">Fanshop</Link>
         </li>
-
         <li>
-          <Link href="/">(newsletter)</Link>
+          <Link href="/">Newsletter</Link>
         </li>
-
         <li>
-          <Link href="/">(spieltag info)</Link>
+          <Link href="/">Spieltag info</Link>
         </li>
-
         <li>
-          <Link href="/">(account)</Link>
+          <Link href="/">Account</Link>
         </li>
       </CenteredMenu>
     </Section>
   );
 };
+
+export { NavbarTest };
