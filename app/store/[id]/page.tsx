@@ -5,7 +5,7 @@ import { createClient } from "@/app/lib/supabase/client";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { revalidatePath, unstable_noStore as noStore } from "next/cache";
 import { Section } from "@/app/components/Section/Section";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 async function getData({ userId, noteId }: { userId: string; noteId: string }) {
     noStore();

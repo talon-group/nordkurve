@@ -1,6 +1,5 @@
 // "use client"
 
-import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./components/theme-provider";
@@ -8,13 +7,10 @@ import { Navbar, NavbarTest } from "./components/Navbar";
 import prisma from "./lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { unstable_noStore as noStore } from "next/cache";
+import { useEffect } from "react";
+import { useSession } from "@supabase/auth-helpers-react";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  manifest: "/manifest.json",
-  title: "Nordkurve",    
-};
 
 async function getData(userId: string) {
   noStore();
@@ -42,6 +38,8 @@ export default async function RootLayout({
 
   const APP_NAME = 'Nordkurve';
   const APP_DESCRIPTION = 'Bayer null view ultras';
+
+  const session = useSession();
 
   return (
     <html lang="en">
