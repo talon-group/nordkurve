@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { BellElectric, BookmarkIcon, CreditCard, DoorClosed, Home, Settings } from "lucide-react";
+import { BellElectric, CreditCard, DoorClosed, Home, Settings } from "lucide-react";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 
 import Link from "next/link";
