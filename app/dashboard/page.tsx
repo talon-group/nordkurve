@@ -37,7 +37,7 @@ async function getData(userId: string) {
   });
 
   return data;
-}
+};
 
 export default async function DashboardPage() {
   const { getUser } = getKindeServerSession();

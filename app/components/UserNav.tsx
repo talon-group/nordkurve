@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { BellElectric, CreditCard, DoorClosed, Home, Settings } from "lucide-react";
+import { BellElectric, CreditCard, DoorClosed, Home, PenLineIcon, Settings, UserCircle } from "lucide-react";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 
 import Link from "next/link";
@@ -18,6 +18,8 @@ export const navItems = [
   { name: "Home", href: "/dashboard", icon: Home },
   { name: "Settings", href: "/dashboard/settings", icon: Settings },
   { name: "Billing", href: "/dashboard/billing", icon: CreditCard },
+  { name: "Administration", href: "/dashboard/admin", icon: UserCircle },
+  { name: "Newsletter", href: "/dashboard/posts", icon: PenLineIcon },
 ];
 
 export function UserNav({
