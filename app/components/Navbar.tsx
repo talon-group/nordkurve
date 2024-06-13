@@ -85,7 +85,7 @@ const NavbarTest = async () => {
                 <LoginLink>Log in</LoginLink>
               </li>
               <li>
-                <Link legacyBehavior href="/sign-up">
+                <Link legacyBehavior href="/api/auth/register">
                   <a className={buttonVariants()}>Sign up</a>
                 </Link>
               </li>
